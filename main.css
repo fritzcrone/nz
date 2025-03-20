@@ -4,7 +4,7 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #8a6565;
+    background-color: #c6b3e5;
     max-width: 1280px;
     margin: auto;
 }
@@ -14,9 +14,9 @@ header>img {
 }
 
 header a img {
-    border: 1px solid silver;
-    border-radius: 50%;
-    margin-top: -75px;
+    border: 1px solid rgb(214, 23, 204);
+    border-radius: 8%;
+    margin-top: -50px;
     margin-left: calc(50% - 50px);
 }
 
@@ -24,7 +24,7 @@ main {
     max-width: 1024px;
     margin: auto;
     margin-top: -50px;
-    border-left: 1px dashed gray;
+    border-left: 1px dashed rgb(30, 216, 43);
     border-right: 1px dashed gray;
     border-bottom: 1px dashed gray;
 }
