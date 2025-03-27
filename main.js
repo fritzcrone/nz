@@ -30,15 +30,3 @@ marker.bindPopup(`
         <li>Geogr. Länge: ${stop.lng.toFixed(3)}°</li>
     </ul>
 `).openPopup();
-
-let course = {
-    title: "Webmapping",
-    semester: "25S",
-    stunden: 3,
-    typ: "VU"
-};
-
-console.log("title", course.title);
-console.log("semester", course.semester);
-console.log("stunden", course.stunden);
-console.log("typ", course.typ);
