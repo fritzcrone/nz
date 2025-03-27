@@ -1,7 +1,7 @@
 /*
 Skript für die Neuseelandreise
 */
-// Karte initialisieren
+
 let stop = {
     nr: 23,
     title: "Dunedin",
@@ -10,10 +10,6 @@ let stop = {
     lng: 170.503611,
     zoom: 13
 };
-
-let map = L.map('map').setView([stop.lat, stop.lng], stop.zoom);
-
-
 
 const STOPS = [
 
@@ -85,7 +81,7 @@ const STOPS = [
         nr: 9,
         title: "Wellington",
         user: "cs4151",
-        lat: "-41.2875",
+        lat: -41.2875,
         lng: 174.776111,
         zoom: 12,
     },
@@ -202,32 +198,38 @@ const STOPS = [
         zoom: 11
     },
 ];
+
 console.log(STOPS[0]);
 console.log(STOPS[0].title);
+
+// Karte initialisieren
+let map = L.map('map');
 
 // Hintergrundkarte definieren
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+}).addTo(map);
 
 // Loop ber Etappen
-for (let i=0; i<STOPS.length; i++) {
-
+for (let i = 0; i < STOPS.length; i++) {
+    console.log(STOPS[i]);
     // Marker zeichnen
-let marker = L.marker([STOPS[i].lat, STOPS[i].lng]).addTo(map);
+    let marker = L.marker([STOPS[i].lat, STOPS[i].lng]).addTo(map);
 
-// Popup definieren und öffnen
-marker.bindPopup(`
+    // Popup definieren und öffnen
+    marker.bindPopup(`
     <h2>${STOPS[i].title}</h2>
     <ul>
         <li>Geogr. Breite: ${STOPS[i].lat.toFixed(3)}°</li>
         <li>Geogr. Länge: ${STOPS[i].lng.toFixed(3)}°</li>
     </ul>
-`).openPopup();
+`);
 
+    // Eigene Etappe blicken und öffnen
+    if (STOPS[i].user == "fritzcrone") {
+        map.setView([STOPS[i].lat, STOPS[i].lng], STOPS[i].zoom);
+        marker.openPopup();
+    }
 
-// Eigene Etappe blicken und öffnen
-if (STOPS[i].user == "fritzcrone")
-    console.log("meine Etappe :-)")
 }
