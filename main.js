@@ -232,4 +232,9 @@ for (let i = 0; i < STOPS.length; i++) {
         marker.openPopup();
     }
 
+// Pulldownmenü befüllen
+let option = document.createElement("option");
+option.value = STOPS[i].user;
+option.text = STOPS[i].title;
+document.querySelector("#pulldown select").appendChild(option);
 }
