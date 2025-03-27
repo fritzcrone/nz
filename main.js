@@ -19,6 +19,9 @@ let marker = L.marker([lat, lng]).addTo(map);
 
 // Popup definieren und öffnen
 marker.bindPopup(`
-    <b>Hello world!</b>
-    <br>I am a popup ${lat.toFixed(5)} / ${lng.toFixed(5)}.
+    <h2>Dunedin</h2>
+    <ul>
+        <li>Geogr. Breite: ${lat.toFixed(3)}°
+        <li>Geogr. Länge: ${lng.toFixed(3)}°
+    </ul>
 `).openPopup();
