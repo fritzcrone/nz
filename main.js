@@ -205,13 +205,19 @@ console.log(STOPS[0].title);
 // Karte initialisieren
 let map = L.map('map');
 
-// Hintergrundkarte definieren
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+// Layercontrol
+L.control.layers({
+    "OSM Mapnik": L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map),
+    "OpenTopoMap": L.tileLayer.provider('OpenTopoMap'),
+    "Esri World Imagery": L.tileLayer.provider('Esri.WorldImagery'),
 }).addTo(map);
 
-// Loop ber Etappen
+// Maßstab 
+L.control.scale({
+    imperial: false,
+}).addTo(map);
+
+// Loop der Etappen
 for (let i = 0; i < STOPS.length; i++) {
     console.log(STOPS[i]);
     // Marker zeichnen
@@ -232,18 +238,18 @@ for (let i = 0; i < STOPS.length; i++) {
         marker.openPopup();
     }
 
-// Pulldownmenü befüllen
-let option = document.createElement("option");
-option.value = STOPS[i].user;
-option.text = STOPS[i].title;
-if (STOPS[i].user == "fritzcrone") {
-    option.selected = true;
-}
-document.querySelector("#pulldown select").appendChild(option);
+    // Pulldownmenü befüllen
+    let option = document.createElement("option");
+    option.value = STOPS[i].user;
+    option.text = STOPS[i].title;
+    if (STOPS[i].user == "fritzcrone") {
+        option.selected = true;
+    }
+    document.querySelector("#pulldown select").appendChild(option);
 }
 
 // Auf Änderungen beim Pulldown reagieren
-document.querySelector("#pulldown select").onchange =function(evt) {
+document.querySelector("#pulldown select").onchange = function (evt) {
     let url = `https://${evt.target.value}.github.io/nz`;
     //console.log(url);
     //console.log(evt.target.value);
